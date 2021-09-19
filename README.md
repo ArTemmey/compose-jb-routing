@@ -1,5 +1,12 @@
 Easiest routing for compose-jb
 
+## Installation
+
+1. Clone repo
+2. Run `./gradlew assemble` in it
+3. Copy `build/libs` folder to your project
+4. Add `implementation(files("../libs/compose-jb-routing-jvm-1.0-SNAPSHOT.jar"))` to your project's build.gradle
+
 ## Usage
 
 1. Declare your app locations:
@@ -8,6 +15,7 @@ Easiest routing for compose-jb
 object MyAppLocation {
     const val Home = "/"
     const val Articles = "/articles"
+
     // {id} is route param
     const val Article = "$Articles/{id}"
 }
