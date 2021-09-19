@@ -66,18 +66,21 @@ fun Article(id: String) {
 ```kotlin
 @Composable
 fun PrivateLocation() {
-    if (!auth)
-    // Redirecting to login and setting current location as ref
-        routing.redirect("${MyAppLocation.Login}?ref=${routing.location}")
+    if (!auth) {
+        // Redirecting to login and setting current location as ref
+        Redirect("${MyAppLocation.Login}?ref=${routing.location}")
+        return
+    }
 }
 
 @Composable
 fun Login() {
-    if (login()) {
+    Button(onClick = {
+        performLogin()
         // If have ref - redirecting back to it, else - just navigate back
         routing.location.query()["ref"]
             ?.let { routing.redirect(it) }
             ?: routing.pop()
-    }
+    }) { Text("Login button") }
 }
 ```
