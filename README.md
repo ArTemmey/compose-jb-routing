@@ -8,6 +8,7 @@ Easiest routing for compose-jb
 object MyAppLocation {
     const val Home = "/"
     const val Articles = "/articles"
+    // {id} is route param
     const val Article = "$Articles/{id}"
 }
 ```
@@ -21,6 +22,7 @@ fun App() {
     routing.switch {
         case(MyAppLocation.Home, exact = true) { Home() }
         case(MyAppLocation.Articles, exact = true) { Articles() }
+        // Obtaining {id} param
         case(MyAppLocation.Article) { Article(param("id")) }
     }
 }
