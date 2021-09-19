@@ -14,6 +14,34 @@ class AlgTest {
         }
         println("DONE")
         // routing.push("/projects/{p}/{p1}/ui")
-       // println(routing.location)
+        // println(routing.location)
     }
+}
+
+object MyAppLocation {
+    const val Home = "/"
+    const val Login = "/login"
+    const val Articles = "/articles"
+    const val Article = "$Articles/{id}"
+}
+
+fun App() {
+    initRouting(MyAppLocation.Home)
+    routing.switch {
+        case(MyAppLocation.Home, exact = true) { Home() }
+        case(MyAppLocation.Articles, exact = true) { Articles() }
+        case(MyAppLocation.Article) { Article(param("id")) }
+    }
+}
+
+fun Home() {
+
+}
+
+fun Articles() {
+
+}
+
+fun Article(id: String) {
+
 }
