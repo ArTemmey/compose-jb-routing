@@ -49,7 +49,11 @@ kotlin {
         }
     }
     sourceSets {
-        val commonMain by getting
+        val commonMain by getting {
+            dependencies {
+                implementation("org.jetbrains.kotlinx:kotlinx-coroutines-core:1.5.2")
+            }
+        }
         val commonTest by getting {
             dependencies {
                 implementation(kotlin("test"))
@@ -61,7 +65,13 @@ kotlin {
             }
         }
         val jvmTest by getting
-        val jsMain by getting
+        val jsMain by getting {
+            dependencies {
+                implementation(compose.web.widgets)
+                implementation(compose.web.core)
+                implementation(compose.runtime)
+            }
+        }
         val jsTest by getting
     }
 }
