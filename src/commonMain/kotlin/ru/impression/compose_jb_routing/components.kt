@@ -9,7 +9,7 @@ inline fun Router(block: RouterScope.() -> Unit) {
             if (routeBlock != null) return
             val take: Boolean
             if (exact && !route.contains('{')) {
-                take = routing._location.value == route
+                take = _routing!!._location.value == route
             } else {
                 var routeRegex = route
                 var indexOfParam = routeRegex.indexOf('{')
@@ -19,7 +19,7 @@ inline fun Router(block: RouterScope.() -> Unit) {
                     indexOfParam = routeRegex.indexOf('{')
                 }
                 routeRegex += if (exact) "$" else ".*"
-                take = routing._location.value.matches(routeRegex.toRegex())
+                take = _routing!!._location.value.matches(routeRegex.toRegex())
             }
             if (take) {
                 routeBlock = block
@@ -46,6 +46,6 @@ abstract class RouteScope @PublishedApi internal constructor() {
 @Composable
 fun Redirect(location: String, vararg params: Pair<String, String>) {
     LaunchedEffect("Redirect") {
-        routing.redirect(location, *params)
+        _routing!!.redirect(location, *params)
     }
 }

@@ -1,16 +1,12 @@
 package ru.impression.compose_jb_routing
 
-var _routing: Routing? = null
 
-val routing: Routing get() = _routing ?: throw IllegalStateException("Call initRouting first")
-
-fun initRouting(startLocation: String) {
-    _routing = Routing(startLocation)
-}
+@PublishedApi
+internal var _routing: Routing? = null
 
 @PublishedApi
 internal fun String.extractParams(): Map<String, String> {
-    val currentLocation = routing.location
+    val currentLocation = _routing!!.location
     var newLocation = this.substringBefore('?')
     val result = HashMap<String, String>()
     var indexOfParam = newLocation.indexOf("/{")
