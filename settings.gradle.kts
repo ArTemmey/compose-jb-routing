@@ -8,3 +8,6 @@ pluginManagement {
 
 rootProject.name = "compose-jb-routing"
 
+include(":lib")
+
+includeBuild("convention-plugins")
