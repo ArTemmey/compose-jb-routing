@@ -28,8 +28,18 @@ object MyAppRoute {
 fun App() {
     initRouting(MyAppRoute.Home)
     routing.switch {
+        // `exact = true` means that current location matches exactly the given route.
+        // If set to false (default), current location can be any of those that starts with the given route.
         case(MyAppRoute.Home, exact = true) { Home() }
-        case(MyAppRoute.Articles, exact = true) { Articles() }
+        case(MyAppRoute.Articles) { Articles() }
+    }
+}
+
+@Composable
+fun Articles() {
+    // Nested routing
+    routing.switch {
+        case(MyAppRoute.Articles, exact = true) { ArticleList() }
         // Obtaining {id} param
         case(MyAppRoute.Article) { Article(param("id")) }
     }
@@ -40,7 +50,7 @@ fun App() {
 
 ```kotlin
 @Composable
-fun Articles() {
+fun ArticleList() {
     articles.forEach {
         ArticlePreview(onClick = {
             // Navigate to next location and add current to the back stack
