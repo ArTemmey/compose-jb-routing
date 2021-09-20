@@ -5,7 +5,17 @@ Easiest routing for compose-jb
 1. Clone repo
 2. Run `./gradlew assemble` in it
 3. Copy `build/libs` folder to your project
-4. Add `implementation(files("libs/compose-jb-routing-jvm-1.0-SNAPSHOT.jar"))` to your project's build.gradle
+4. Add dependency  to your project's build.gradle
+- For desktop
+```kotlin
+implementation(files("libs/compose-jb-routing-1.0-SNAPSHOT.jar"))
+implementation(files("libs/compose-jb-routing-jvm-1.0-SNAPSHOT.jar"))
+```
+- For browser
+```kotlin
+implementation(files("libs/compose-jb-routing-1.0-SNAPSHOT.jar"))
+implementation(files("libs/compose-jb-routing-js-1.0-SNAPSHOT.klib"))
+```
 
 ## Usage
 
