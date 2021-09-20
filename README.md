@@ -9,7 +9,7 @@ Easiest routing for compose-jb
 
 ## Usage
 
-1. Declare your app router:
+1. Declare your app routes:
 
 ```kotlin
 object MyAppRoute {
