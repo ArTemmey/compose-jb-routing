@@ -14,6 +14,7 @@ Easiest routing for compose-jb
 ```kotlin
 object MyAppRoute {
     const val Home = "/"
+    
     const val Articles = "/articles"
 
     // {id} is route param
@@ -29,9 +30,8 @@ fun App() {
     initRouting(MyAppRoute.Home)
     Router {
         // `exact = true` means that current location matches exactly the given route.
-        // If set to false (default), current location can be any of those that starts with the given route.
         route(MyAppRoute.Home, exact = true) { Home() }
-        // Means that current location is "/articles.*"
+        // Default value of `exact` (false) means that current location can be any of those that starts with the given route. In this example location matches "/articles.*"
         route(MyAppRoute.Articles) { Articles() }
     }
 }

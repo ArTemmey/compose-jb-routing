@@ -5,7 +5,7 @@ inline fun Router(block: RouterScope.() -> Unit) {
     var routeBlock: (@Composable RouteScope.() -> Unit)? = null
     var routeScope: RouteScope? = null
     block(object : RouterScope() {
-        override fun case(route: String, exact: Boolean, block: @Composable RouteScope.() -> Unit) {
+        override fun route(route: String, exact: Boolean, block: @Composable RouteScope.() -> Unit) {
             if (routeBlock != null) return
             val take: Boolean
             if (exact && !route.contains('{')) {
@@ -35,7 +35,7 @@ inline fun Router(block: RouterScope.() -> Unit) {
 
 abstract class RouterScope @PublishedApi internal constructor() {
 
-    abstract fun case(route: String, exact: Boolean = false, block: @Composable RouteScope.() -> Unit)
+    abstract fun route(route: String, exact: Boolean = false, block: @Composable RouteScope.() -> Unit)
 }
 
 abstract class RouteScope @PublishedApi internal constructor() {
