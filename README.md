@@ -9,10 +9,10 @@ Easiest routing for compose-jb
 
 ## Usage
 
-1. Declare your app locations:
+1. Declare your app router:
 
 ```kotlin
-object MyAppLocation {
+object MyAppRoute {
     const val Home = "/"
     const val Articles = "/articles"
 
@@ -26,12 +26,12 @@ object MyAppLocation {
 ```kotlin
 @Composable
 fun App() {
-    initRouting(MyAppLocation.Home)
+    initRouting(MyAppRoute.Home)
     routing.switch {
-        case(MyAppLocation.Home, exact = true) { Home() }
-        case(MyAppLocation.Articles, exact = true) { Articles() }
+        case(MyAppRoute.Home, exact = true) { Home() }
+        case(MyAppRoute.Articles, exact = true) { Articles() }
         // Obtaining {id} param
-        case(MyAppLocation.Article) { Article(param("id")) }
+        case(MyAppRoute.Article) { Article(param("id")) }
     }
 }
 ```
@@ -44,7 +44,7 @@ fun Articles() {
     articles.forEach {
         ArticlePreview(onClick = {
             // Navigate to next location and add current to the back stack
-            routing.push(MyAppLocation.Article, "id" to it.id)
+            routing.push(MyAppRoute.Article, "id" to it.id)
 
             // Here we can see the back stack
             println(routing.history)
@@ -65,10 +65,10 @@ fun Article(id: String) {
 
 ```kotlin
 @Composable
-fun PrivateLocation() {
+fun PrivateRoute() {
     if (!auth) {
         // Redirecting to login and setting current location as ref
-        Redirect("${MyAppLocation.Login}?ref=${routing.location}")
+        Redirect("${MyAppRoute.Login}?ref=${routing.location}")
         return
     }
 }
