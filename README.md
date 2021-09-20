@@ -27,21 +27,22 @@ object MyAppRoute {
 @Composable
 fun App() {
     initRouting(MyAppRoute.Home)
-    routing.switch {
+    Router {
         // `exact = true` means that current location matches exactly the given route.
         // If set to false (default), current location can be any of those that starts with the given route.
-        case(MyAppRoute.Home, exact = true) { Home() }
-        case(MyAppRoute.Articles) { Articles() }
+        route(MyAppRoute.Home, exact = true) { Home() }
+        // Means that current location is "/articles.*"
+        route(MyAppRoute.Articles) { Articles() }
     }
 }
 
 @Composable
 fun Articles() {
     // Nested routing
-    routing.switch {
-        case(MyAppRoute.Articles, exact = true) { ArticleList() }
+    Router {
+        route(MyAppRoute.Articles, exact = true) { ArticleList() }
         // Obtaining {id} param
-        case(MyAppRoute.Article) { Article(param("id")) }
+        route(MyAppRoute.Article) { Article(param("id")) }
     }
 }
 ```
