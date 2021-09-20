@@ -8,7 +8,7 @@ repositories {
 }
 
 dependencies {
-    implementation("io.github.artemmey:compose-jb-routing:0.9.1")
+    implementation("io.github.artemmey:compose-jb-routing:0.9.2")
 }
 ```
 

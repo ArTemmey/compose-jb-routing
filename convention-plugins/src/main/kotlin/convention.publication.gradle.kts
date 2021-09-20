@@ -56,10 +56,6 @@ publishing {
     // Configure all publications
     publications.withType<MavenPublication> {
 
-        groupId = "io.github.artemmey"
-        artifactId = "compose-jb-routing"
-        version = "0.9.1"
-
         // Stub javadoc.jar artifact
         artifact(javadocJar.get())
 
