@@ -56,14 +56,18 @@ publishing {
     // Configure all publications
     publications.withType<MavenPublication> {
 
+        groupId = "io.github.artemmey"
+        artifactId = "compose-jb-routing"
+        version = "0.9.1"
+
         // Stub javadoc.jar artifact
         artifact(javadocJar.get())
 
         // Provide artifacts information requited by Maven Central
         pom {
-            name.set("MPP Sample library")
-            description.set("Sample Kotlin Multiplatform library (jvm + ios + js) test")
-            url.set("https://github.com/KaterinaPetrova/mpp-sample-lib")
+            name.set("compose-jb-routing")
+            description.set("Easiest routing for Compose jb")
+            url.set("https://github.com/ArTemmey/compose-jb-routing")
 
             licenses {
                 license {
