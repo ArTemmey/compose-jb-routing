@@ -1,4 +1,8 @@
-Easiest routing for compose-jb
+**Easiest routing for compose-jb**
+
+Supported targets:
+- Jvm
+- Js
 
 ## Installation
 
