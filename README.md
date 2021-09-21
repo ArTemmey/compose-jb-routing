@@ -95,12 +95,12 @@ fun PrivateRoute() {
 
 @Composable
 fun Login() {
-    Button(onClick = {
+    LoginButton(onClick = {
         performLogin()
         // If have ref - redirecting back to it, else - just navigate back
         routing.location.query()["ref"]
             ?.let { routing.redirect(it) }
             ?: routing.pop()
-    }) { Text("Login button") }
+    })
 }
 ```
