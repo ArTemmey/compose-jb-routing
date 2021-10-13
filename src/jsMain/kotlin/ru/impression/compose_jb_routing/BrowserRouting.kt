@@ -20,7 +20,7 @@ class BrowserRouting internal constructor(startLocation: String) : Routing(start
     }
 
     private fun refresh() {
-        _location.value = window.location.pathname
+        _location.value = Location(window.location.pathname)
     }
 
     override fun pop() {

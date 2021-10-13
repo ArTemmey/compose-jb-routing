@@ -7,25 +7,12 @@ inline fun Router(block: RouterScope.() -> Unit) {
     block(object : RouterScope() {
         override fun route(route: String, exact: Boolean, block: @Composable RouteScope.() -> Unit) {
             if (routeBlock != null) return
-            val take: Boolean
-            if (exact && !route.contains('{')) {
-                take = _routing!!._location.value == route
-            } else {
-                var routeRegex = route
-                var indexOfParam = routeRegex.indexOf('{')
-                while (indexOfParam != -1) {
-                    val param = routeRegex.substring(indexOfParam..routeRegex.indexOf('}', indexOfParam))
-                    routeRegex = routeRegex.replaceFirst(param, "[^/;]+")
-                    indexOfParam = routeRegex.indexOf('{')
-                }
-                routeRegex += if (exact) "$" else ".*"
-                take = _routing!!._location.value.matches(routeRegex.toRegex())
-            }
-            if (take) {
+            if (_routing!!.location.matches(route, exact = exact)) {
                 routeBlock = block
                 val params = route.extractParams()
                 routeScope = object : RouteScope() {
-                    override fun param(name: String): String = params["{$name}"]!!
+                    override fun param(name: String): String =
+                        params[name] ?: throw Exception("No param with name $name")
                 }
             }
         }

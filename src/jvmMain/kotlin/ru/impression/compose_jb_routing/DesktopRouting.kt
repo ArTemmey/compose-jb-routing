@@ -2,7 +2,7 @@ package ru.impression.compose_jb_routing
 
 class DesktopRouting internal constructor(startLocation: String) : Routing(startLocation) {
 
-    private val _history = ArrayList<String>()
+    private val _history = ArrayList<Location>()
 
     val history get() = _history.toList()
 

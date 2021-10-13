@@ -26,7 +26,7 @@ plugins {
 }
 
 group = "io.github.artemmey"
-version = "0.9.2-a2"
+version = "0.9.2-a2-LOCAL"
 
 repositories {
     mavenCentral()
