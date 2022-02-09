@@ -20,7 +20,9 @@ inline fun Router(block: RouterScope.() -> Unit) {
             }
         }
     })
-    routeBlock?.let { it(routeScope ?: return@let) }
+    routeBlock?.let { routeBlock ->
+        routeScope?.let { routeScope -> routeBlock(routeScope) }
+    }
 }
 
 abstract class RouterScope @PublishedApi internal constructor() {
