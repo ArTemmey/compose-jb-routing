@@ -4,6 +4,9 @@ package ru.impression.compose_jb_routing
 @PublishedApi
 internal var _routing: Routing? = null
 
+val routing: Routing
+    get() = _routing ?: throw IllegalStateException("Call initRouting first")
+
 @PublishedApi
 internal fun String.setParams(vararg params: Pair<String, String>): String {
     var result = this
