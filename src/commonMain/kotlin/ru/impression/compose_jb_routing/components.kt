@@ -1,5 +1,8 @@
 package ru.impression.compose_jb_routing
 
+import androidx.compose.runtime.Composable
+import androidx.compose.runtime.LaunchedEffect
+
 @Composable
 inline fun Router(block: RouterScope.() -> Unit) {
     var routeBlock: (@Composable RouteScope.() -> Unit)? = null
@@ -32,7 +35,7 @@ abstract class RouteScope @PublishedApi internal constructor() {
 
 @Composable
 fun Redirect(location: String, vararg params: Pair<String, String>) {
-    LaunchedEffect("Redirect") {
+    LaunchedEffect(Unit) {
         _routing!!.redirect(location, *params)
     }
 }

@@ -1,10 +1,12 @@
 package ru.impression.compose_jb_routing
 
+import androidx.compose.runtime.mutableStateOf
+
 
 abstract class Routing internal constructor(startPath: String) {
 
     @PublishedApi
-    internal val _location: MutableState<Location> = mutableStateOf(Location(startPath))
+    internal val _location = mutableStateOf(Location(startPath))
 
     val location: Location get() = _location.value
 

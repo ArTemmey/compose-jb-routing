@@ -5,28 +5,23 @@ buildscript {
         gradlePluginPortal()
         maven(url = "https://plugins.gradle.org/m2/") // For kotlinter-gradle
     }
-
-    dependencies {
-        classpath("org.jetbrains.kotlin:kotlin-gradle-plugin:1.5.30")
-    }
 }
 
 allprojects {
     repositories {
         google()
         mavenCentral()
-        maven(url = "https://jitpack.io")
     }
 }
 
 plugins {
-    kotlin("multiplatform") version "1.5.30"
+    kotlin("multiplatform") version "1.6.10"
     id("convention.publication")
-    id("org.jetbrains.compose") version "1.0.0-alpha4-build348"
+    id("org.jetbrains.compose") version "1.2.0-alpha01-dev609"
 }
 
 group = "io.github.artemmey"
-version = "0.9.2-a2-LOCAL"
+version = "0.9.3"
 
 repositories {
     mavenCentral()
@@ -43,16 +38,13 @@ kotlin {
         }
     }
     js(IR) {
-        browser {
-            commonWebpackConfig {
-                cssSupport.enabled = true
-            }
-        }
+        browser()
+        binaries.executable()
     }
     sourceSets {
         val commonMain by getting {
             dependencies {
-                implementation("org.jetbrains.kotlinx:kotlinx-coroutines-core:1.5.2")
+                implementation(compose.runtime)
             }
         }
         val commonTest by getting {
@@ -68,9 +60,7 @@ kotlin {
         val jvmTest by getting
         val jsMain by getting {
             dependencies {
-                implementation(compose.web.widgets)
                 implementation(compose.web.core)
-                implementation(compose.runtime)
             }
         }
         val jsTest by getting
