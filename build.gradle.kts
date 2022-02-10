@@ -17,11 +17,11 @@ allprojects {
 plugins {
     kotlin("multiplatform") version "1.6.10"
     id("convention.publication")
-    id("org.jetbrains.compose") version "1.2.0-alpha01-dev609"
+    id("org.jetbrains.compose") version "1.0.1"
 }
 
 group = "io.github.artemmey"
-version = "0.9.4"
+version = "0.9.5"
 
 repositories {
     mavenCentral()
@@ -29,14 +29,7 @@ repositories {
 }
 
 kotlin {
-    jvm {
-        compilations.all {
-            kotlinOptions.jvmTarget = "1.8"
-        }
-        testRuns["test"].executionTask.configure {
-            useJUnit()
-        }
-    }
+    jvm()
     js(IR) {
         browser()
         binaries.executable()
@@ -64,5 +57,11 @@ kotlin {
             }
         }
         val jsTest by getting
+    }
+}
+
+tasks.withType<org.jetbrains.kotlin.gradle.tasks.KotlinCompile> {
+    kotlinOptions {
+        jvmTarget = "1.8"
     }
 }
